@@ -25,5 +25,7 @@ jobs:
             mix ecto.create
             mix test
   deploy:
+    machine:
+      image: ubuntu-1604:201903-01
     steps:
       - run: ssh ubuntu@13.229.202.39 ls /src
