@@ -60,3 +60,11 @@ jobs:
       image: ubuntu-1604:201903-01
     steps:
       - run: ssh ubuntu@13.229.202.39 ls /src
+workflows:
+  version: 2
+  ci-cd:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
