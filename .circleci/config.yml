@@ -55,16 +55,30 @@ jobs:
 
       - run: mix test
 
-  deploy:
+  deploy_staging:
     machine:
       image: ubuntu-1604:201903-01
     steps:
-      - run: ssh ubuntu@13.229.202.39 cd /src/yojee && git reset --hard HEAD && git pull
+      - run: ssh ubuntu@13.229.202.39 cd /src/staging && git reset --hard HEAD && git pull
+  deploy_production:
+    machine:
+      image: ubuntu-1604:201903-01
+    steps:
+      - run: ssh ubuntu@13.229.202.39 cd /src/production && git reset --hard HEAD && git pull
 workflows:
   version: 2
   ci-cd:
     jobs:
       - build
-      - deploy:
+      - deploy_staging:
+          filters:
+            branches:
+              only: staging
+          requires:
+            - build
+      - deploy_production:
+          filters:
+            branches:
+              only: master
           requires:
             - build
