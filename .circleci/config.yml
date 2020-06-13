@@ -18,11 +18,12 @@ jobs:
       - checkout
 
       # specify any bash command here prefixed with `run: `
-      - run: |
-        cd hello
-        mix deps.get
-        mix ecto.create
-        mix test
+      - run:
+        command: |
+          cd hello
+          mix deps.get
+          mix ecto.create
+          mix test
  deploy:
    steps:
      - run: ssh ubuntu@13.229.202.39 ls /src
