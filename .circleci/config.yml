@@ -21,6 +21,7 @@ jobs:
       - run:
           command: |
             cd hello
+            mix local.hex --force
             mix deps.get
             mix ecto.create
             mix test
