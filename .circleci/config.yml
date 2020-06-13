@@ -59,12 +59,28 @@ jobs:
     machine:
       image: ubuntu-1604:201903-01
     steps:
-      - run: ssh ubuntu@13.229.202.39 "cd /src/staging/yojee && git reset --hard HEAD && git pull"
+      - run:
+          command: |
+            ssh ubuntu@13.229.202.39 << EOF
+              cd /src/staging/yojee
+              git reset --hard HEAD
+              git pull
+              npm install
+              mix deps.get --force
+            EOF
   deploy_production:
     machine:
       image: ubuntu-1604:201903-01
     steps:
-      - run: ssh ubuntu@13.229.202.39 "cd /src/production/yojee && git reset --hard HEAD && git pull"
+      - run:
+          command: |
+            ssh ubuntu@13.229.202.39 << EOF
+              cd /src/production/yojee
+              git reset --hard HEAD
+              git pull
+              npm install
+              mix deps.get --force
+            EOF
 workflows:
   version: 2
   ci-cd:
