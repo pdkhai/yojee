@@ -61,7 +61,7 @@ jobs:
     steps:
       - run:
           command: |
-            ssh ubuntu@{WEBSERVER_STAG_IP} << EOF
+            ssh ubuntu@${WEBSERVER_STAG_IP} << EOF
               cd /src/yojee
               git reset --hard HEAD
               git pull
