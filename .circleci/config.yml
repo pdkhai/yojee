@@ -24,6 +24,6 @@ jobs:
           mix deps.get
           mix ecto.create
           mix test
- deploy:
-   steps:
-     - run: ssh ubuntu@13.229.202.39 ls /src
+  deploy:
+    steps:
+      - run: ssh ubuntu@13.229.202.39 ls /src
