@@ -23,8 +23,8 @@ jobs:
             cd hello
             mix local.hex --force
             mix archive.install hex phx_new 1.5.3 --force
-            mix deps.get
-            mix ecto.create
+            mix deps.get --force
+            mix ecto.create --force
             mix test
   deploy:
     machine:
