@@ -59,7 +59,7 @@ jobs:
     machine:
       image: ubuntu-1604:201903-01
     steps:
-      - run: ssh ubuntu@13.229.202.39 ls /src
+      - run: ssh ubuntu@13.229.202.39 cd /src/yojee && git reset --hard HEAD && git pull
 workflows:
   version: 2
   ci-cd:
