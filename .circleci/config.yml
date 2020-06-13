@@ -61,11 +61,10 @@ jobs:
     steps:
       - run:
           command: |
-            ssh ubuntu@13.229.202.39 << EOF
-              cd /src/staging/yojee
+            ssh ubuntu@{WEBSERVER_STAG_IP} << EOF
+              cd /src/yojee
               git reset --hard HEAD
               git pull
-              npm install
               mix deps.get --force
             EOF
   deploy_production:
@@ -74,12 +73,12 @@ jobs:
     steps:
       - run:
           command: |
-            ssh ubuntu@13.229.202.39 << EOF
-              cd /src/production/yojee
+            ssh ubuntu@${WEBSERVER_PROD_IP} << EOF
+              cd /src/yojee
               git reset --hard HEAD
               git pull
-              npm install
               mix deps.get --force
+              mix ecto.migrate
             EOF
 workflows:
   version: 2
