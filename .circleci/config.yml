@@ -78,6 +78,7 @@ jobs:
       - run:
           command: |
             ssh ubuntu@${WEBSERVER_PROD_IP} \<< EOF
+
               cd /src/yojee
               git reset --hard HEAD
               git pull
