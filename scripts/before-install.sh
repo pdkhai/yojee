@@ -1,4 +1,5 @@
 #!/bin/bash
+
 export FOLDER=/tmp/yojee
 
 if [ -d $FOLDER ]
