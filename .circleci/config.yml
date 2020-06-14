@@ -1,7 +1,7 @@
 # Elixir CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-elixir/ for more details
-version: 2.1
+version: 2
 
 orbs:
   aws-code-deploy: circleci/aws-code-deploy@1.0.1
@@ -95,15 +95,12 @@ workflows:
               only: staging
           requires:
             - build
-      - deploy_production:
+      - aws-code-deploy/deploy:
           filters:
             branches:
               only: master
           requires:
             - build
-  deploy_application:
-    jobs:
-      - aws-code-deploy/deploy:
           application-name: yojee-webserver
           bundle-bucket: codedeploy-12010014062020
           bundle-key: deploy/deploy.zip
