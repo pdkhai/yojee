@@ -1,7 +1,7 @@
 # Elixir CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-elixir/ for more details
-version: 2
+version: 2.1
 
 orbs:
   aws-code-deploy: circleci/aws-code-deploy@1.0.1
@@ -65,7 +65,7 @@ jobs:
     steps:
       - run:
           command: |
-            ssh ubuntu@${WEBSERVER_STAG_IP} << EOF
+            ssh ubuntu@${WEBSERVER_STAG_IP} \<< EOF
               cd /src/yojee
               git reset --hard HEAD
               git pull
@@ -77,7 +77,7 @@ jobs:
     steps:
       - run:
           command: |
-            ssh ubuntu@${WEBSERVER_PROD_IP} << EOF
+            ssh ubuntu@${WEBSERVER_PROD_IP} \<< EOF
               cd /src/yojee
               git reset --hard HEAD
               git pull
