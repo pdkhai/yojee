@@ -1,5 +1,6 @@
 #!/bin/bash
-export FOLDER=/src/yojee
+
+export FOLDER=/tmp/yojee
 
 if [ -d $FOLDER ]
 then

@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /src/yojee
+cd /tmp/yojee
 
 mix phx.server --force &
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /tmp/CodeDeploy
+cd /tmp/yojee
 
 curl localhost:4001
 
