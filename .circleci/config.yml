@@ -1,7 +1,11 @@
 # Elixir CircleCI 2.0 configuration file
 #
 # Check https://circleci.com/docs/2.0/language-elixir/ for more details
-version: 2
+version: 2.1
+
+orbs:
+  aws-code-deploy: circleci/aws-code-deploy@1.0.1
+
 jobs:
   build:
     docker:
@@ -61,7 +65,7 @@ jobs:
     steps:
       - run:
           command: |
-            ssh ubuntu@${WEBSERVER_STAG_IP} << EOF
+            ssh ubuntu@${WEBSERVER_STAG_IP} \<< EOF
               cd /src/yojee
               git reset --hard HEAD
               git pull
@@ -73,7 +77,8 @@ jobs:
     steps:
       - run:
           command: |
-            ssh ubuntu@${WEBSERVER_PROD_IP} << EOF
+            ssh ubuntu@${WEBSERVER_PROD_IP} \<< EOF
+
               cd /src/yojee
               git reset --hard HEAD
               git pull
@@ -91,9 +96,14 @@ workflows:
               only: staging
           requires:
             - build
-      - deploy_production:
+      - aws-code-deploy/deploy:
           filters:
             branches:
               only: master
           requires:
             - build
+          application-name: yojee-webserver
+          bundle-bucket: codedeploy-12010014062020
+          bundle-key: deploy/deploy.zip
+          deployment-group: yojee-webserver
+          service-role-arn: arn:aws:iam::478017650513:role/yojee-codedeploy
