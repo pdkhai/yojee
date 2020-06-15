@@ -104,6 +104,6 @@ workflows:
             - build
           application-name: yojee-webserver
           bundle-bucket: codedeploy-12010014062020
-          bundle-key: deploy/deploy.zip
+          bundle-key: deploy
           deployment-group: yojee-webserver
           service-role-arn: arn:aws:iam::478017650513:role/yojee-codedeploy
