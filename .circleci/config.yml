@@ -87,25 +87,24 @@ jobs:
             EOF
 workflows:
   version: 2
-  staging:
+  ci-cd:
     jobs:
-      - build
+      - build:
+          filters:
+            tags:
+              only: /^release-.*/
       - deploy_staging:
           filters:
             branches:
               only: master
           requires:
             - build
-  production:
-    jobs:
-      - build:
-          filters:
-            tags:
-              only: /release-.*/
       - aws-code-deploy/deploy:
           filters:
             tags:
-              only: /release-.*/
+              only: /^release-.*/
+            branches:
+              ignore: /.*/
           requires:
             - build
           application-name: yojee-webserver
