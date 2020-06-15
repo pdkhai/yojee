@@ -93,13 +93,13 @@ workflows:
       - deploy_staging:
           filters:
             branches:
-              only: staging
+              only: master
           requires:
             - build
       - aws-code-deploy/deploy:
           filters:
-            branches:
-              only: master
+            tags:
+              only: /release-.*/
           requires:
             - build
           application-name: yojee-webserver
