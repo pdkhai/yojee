@@ -87,7 +87,7 @@ jobs:
             EOF
 workflows:
   version: 2
-  ci-cd:
+  staging:
     jobs:
       - build
       - deploy_staging:
@@ -96,6 +96,12 @@ workflows:
               only: master
           requires:
             - build
+  production:
+    jobs:
+      - build:
+          filters:
+            tags:
+              only: /release-.*/
       - aws-code-deploy/deploy:
           filters:
             tags:
