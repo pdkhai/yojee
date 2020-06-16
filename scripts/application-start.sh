@@ -9,6 +9,6 @@ mix ecto.create
 
 npm install --prefix assets/
 
-mix phx.server &
+nohup mix phx.server &
 
 echo "The ApplicationStart deployment lifecycle event successfully completed."
