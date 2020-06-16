@@ -9,3 +9,4 @@ fi
 
 mkdir -p $FOLDER
 
+sudo apt-get upgrade -y nodejs

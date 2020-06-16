@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 cd /tmp/yojee
 mix local.hex --force
 mix local.rebar --force
@@ -7,8 +7,8 @@ mix deps.get --force
 mix deps.update gettext --force
 mix ecto.create
 
-cd /tmp/yojee/assets && npm install && cd ..
+npm install --prefix assets/
 
-mix phx.server --force &
+mix phx.server &
 
 echo "The ApplicationStart deployment lifecycle event successfully completed."
