@@ -8,5 +8,3 @@ then
 fi
 
 mkdir -p $FOLDER
-
-apt-get upgrade -y nodejs
